@@ -1,0 +1,246 @@
+                                        PET-CLICK
+
+
+Projeto: plataforma para gerenciamento de PETs.
+
+FASE 1: Construir perfil do usuário, onde ele somente gerencia seus pets da seguinte maneira:
+    - Postagens de cada PET do usuário aparecem no perfil dele.
+    - Serviços para gerenciamento dos PETs são administrados.
+    - Serviço de desaparecidos e adoção.
+Nessa fase a relação com outros usuários na forma USUÁRIO1 <--> USUARIO2 é somente
+por meio das funções desaparecimento e adoção, com uso de geolocalização.
+
+FASE 2: Um pet pode seguir o outro e ver suas postagens. Criação de um feed de noticias.
+        Postagens promovidas por amigos, entidades como ONGs, Clínicas veterinárias, Petshops
+        e outros serviços, que podem ser orientadas pelo perfil do usuário.
+        Por exemplo:
+            - Postagem de clinica de veterinária direcionada pela localização das pessoas.
+              Ou seja, só aparece o anúncio para o pessoal da Vila Olímpia.
+            - Postagem de marca de ração direcionada a marca poodle.
+            - Anuncio de serviço de vacinação baseado em geolocalização e situação de 
+            vacinação do se cão.
+    OBS: Essa parte será implementada se der tempo.
+
+-----------------------------------------------------------------------------
+                    PÁGINA INICIAL
+
+    Conteúdo:
+        - Cabeçalho com:
+            - login,
+            - senha,
+            - esqueci minha senha,
+            - cadastro do usuário.
+        - Texto sobre a plataforma,
+        - Animação bonitinha de pets.
+-----------------------------------------------------------------------------
+                CADASTRO DO USUÁRIO
+2º Passo. Criar formulário de cadastro do usuário (familia ou ONG).
+
+        CHAVE                 VALOR                           ACESSO
+
+    - Upload de foto:      Foto                             (público) 
+    - Familia ou ONG:      família                          (público)
+    - nome:                Marco Aurelio                    (protegido) 
+    - sobrenome:           Reis Lima Menezes                (protegido) 
+    - username:            Marco Menezes,                   (público) 
+    - email:               marcoaurelioreislima@gmail.com,  (público)
+    - senha:               *********,                       (protegido) 
+    - confirmar senha:     *********,                       (protegido) 
+    - data de nascimento:  05/07/91,                        (protegido) 
+    - telefone:            (31)99777-8827,                  (protegido) 
+    - endereco:
+        - Logradouro:          Rua José Getúlio,            (protegido) 
+        - Numero:              130,                         (protegido) 
+        - Complemento:         apto 510,                    (protegido) 
+        - Bairro:              Aclimação,                   (protegido) 
+        - Cidade:              São Paulo,                   (público) 
+        - Estado:              São Paulo,                   (público)
+
+        - Quero adotar?        Não (default)                (público)
+
+    Adicionar Pet (OPICIONAL)
+    
+        - Upload de foto:           Foto,                         (público)
+        - Espécie:                  Cachorro                      (público)
+        - nome:                     Müller,                       (público)
+        - raça:                     Poodle,                       (público)
+        - data de nascimento:       23/11/2019,                   (público)
+        - cartão vacina:            {Objeto vazio},               (privado)
+        - historico de saúde:       [lista vazia],                (privado)
+        - historico alimentação:    [lista vazia],                (privado)
+
+                SERVIÇOS PARA A FAMILIA CUIDAR MELHOR DE SEU PET
+--------------------------------------------------------------------------------------------
+GERENCIAMENTO DO CARTÃO VACINA DO SEU PET
+    - Para um novo pet cadastrado é gerado um calendário de previsão para vacinas.
+    - Mostrar situação do cachorro (Regular ou Irregular),
+    - Mostrar próximas vacinas (nos pŕoximos 30 dias),
+    - Links para informações sobre cada doença que as vacinas previnem,
+    - Emite notificações 2 e 1 dia antes da data prevista para vacinação. 
+    + Calendário (Animação) select para tipo de vacina, escolha de data no calendário
+      e opção salvar vacinação.
+    
+    Objetivo: Manter os pets vacinados de acordo com um melhor controle da família.
+--------------------------------------------------------------------------------------------
+HISTÓRICO DE PROCEDIMENTOS VETERINÁRIOS COM SEU PET
+    - Uma lista inicialmente vazia e preenchida pelo usuário ao longo do tempo.
+    - Consultar lista,
+    - Editar um elemento específico da lista,
+    - Deletar um elemento especifico da lista,
+    + Adicionar relato veterinário:
+        
+            FORMATO DOS ELEMENTOS DA LISTA
+
+        ATRIBUTO                        VALOR
+    - campo com data:                  02/02/2018
+    - nome da veterinária:             Maria Fernanda Oliveira
+    - custo da consulta:               R$ 340,00
+    - descrição da situação:           Pet comeu um sapo.
+    - descrição da medicação:          
+        - nome:                             Dipirona,
+        - dosagem:                          30 gotas,
+        - frequência:                       8 horas,
+        - preço:                            R$ 12,50
+    - tempo de tratamento:             5 dias.
+
+    Objetivos: 
+        * Ter histórico médico do pet, para futuros consultas veterinárias,
+        * Controle de gastos médicos. 
+--------------------------------------------------------------------------------------------
+HISTÓRICO COM GASTOS FIXOS COM SEU PET
+    - Uma lista inicialmente vazia e preenchida pelo usuário ao longo do tempo.
+    - Consultar lista,
+    - Editar um elemento específico da lista,
+    - Deletar um elemento especifico da lista,
+    + Adicionar item de alimentação.
+
+                    FORMATO DOS ELEMENTOS DA LISTA
+
+                ATRIBUTO              VALOR
+            - campo com data:       21/02/2020,
+            - tipo produto:         Ração Cachorro
+            - nome do produto:      Golden Bom Pra Cachorro
+            - descrição,            Ração recomendada pela veterinária,           
+            - quantidade,           R$ 10kg,
+            - preço:                R$ 48,99,
+            - local de compra.      Petshop da esquina.
+    Objetivos: 
+        * A partir do segundo item é possivel gerar médias de consumo de ração, gráficos, etc.
+        * Controle de gastos com alimentação.
+--------------------------------------------------------------------------------------------
+HISTÓRICO COM GASTOS FIXOS COM SEU PET
+    - Lista de histórico com gastos fixos com o pet(inicialmente vazia e preenchida
+      ao longo do tempo pelo usuário).
+    - Consultar lista,
+    - Editar um elemento específico da lista
+    - Deletar um elemento especifico da lista. 
+    + Adicionar gastos fixos (produtos ou serviços):
+        
+                    FORMATO DOS ELEMENTOS DA LISTA
+
+                ATRIBUTO                  VALOR
+            - campo com data,           18/02/2020,
+            - serviço ou produto:       Serviço,
+            - nome:                     Tosa,
+            - descrição,                Tosa mensal,           
+            - quantidade,               R$ 10kg,
+            - preço:                    R$ 48,99,
+            - local de compra.          Petshop da esquina.
+    Objetivos: 
+        * Ter um histórico de ações e gastos com seu PET.
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+------------------------------- PERFIL DO USUÁRIO  ----------------------------------------
+
+Quando eu entro na página do meu perfil (usuário):
+
+    DADOS DO USUÁRIO                    ACESSO
+
+    - Foto do usuário:                  PÚBLICO
+    - Username:                         PÚBLICO
+    - Idade:                            USUÁRIO ESCOLHE (PUBLICO/PRIVADO)
+    - email:                            PÚBLICO
+    - telefone:                         USUÁRIO ESCOLHE (PUBLICO/PRIVADO)
+    - bairro:                           USUÁRIO ESCOLHE (PUBLICO/PRIVADO)
+    - cidade:                           USUÁRIO  (PUBLICO/PRIVADO)
+    - lista de pets:                    PÚBLICO
+    
+    Função:         + Adicionar pet (aparece cadastro pet).
+    Função:         + Relatar desaparecimento.
+    Função:         + Publicar adoção.
+    Função:         + Quero adotar.
+
+    + Relatar desaparecimento:
+        - Fotos (4 fotos),
+        - Nome,
+        - Especie,
+        - Descrição,
+        - Local de desaparecimento,
+        - Data do desaparecimento.
+        
+    + Publicar adoção:
+        - Fotos (4 fotos),
+        - Espécie,
+        - Raça,
+        - Data de nascimento,
+        - Endereço para adoção,
+        - Regularidade de vacinas,
+        - Contato,
+
+    + Quero adotar:
+        - Especie,
+        - Raio de disposição de adoção,
+        - Endereço próprio,
+        - Contato
+OBS: OS dados desses metodos acima são fornecidos pelo usuário. Há alguns que estarão
+como default, de acordo com o puxado do perfil do usuário. Outros estarão em branco
+e precisam ser preenchidos. 
+------------------------------- PERFIL DO PET  ----------------------------------------
+    HEADER com:
+        - Foto do Pet, nome do pet, nome do dono e logo da plataforma.
+
+    BOTÕES lado esquerdo e abaixo do header
+
+            NOME BOTÃO                  AÇÃO                            ACESSO
+        - cartão vacina:            aba cartão de vacina               (privado)
+        - historico de saúde:       aba histórico de saúde             (privado)
+        - historico alimentação:    aba historico com alimentação      (privado)
+
+    Área para postagens pessoais (Escolha de acesso privado, amigos, público). 
+    Exemplo: postagem de fotos, textos, videos, etc        
+    
+    1ª fase: Aparecem somente para ele.
+    2ª fase: Aparecem para quem ele permite (somente ele, amigos ou público)
+
+
+-------------------------   REGRAS DE NEGOCIO   ------------------------------
+
+    - Um usuário cria sua conta e pode adicionar PETs.
+    - Todo PET tem uma familia ou uma ONG.
+    - Um usuário com PET pode relatar um desaparecimento    (aba desaparecido).
+    - Um usuário com PET pode publicar adoção.              (aba doação de PETs)
+    - Um usuário com PET ou sem pode procurar por adoção.   (aba adoção de PETs)
+
+    - O que um usuário vê em seu próprio perfil:
+        * com seus dados (para edição ou somente visualizaçao),
+        * Avatares de seus PETS (link para perfil do PET)
+        * Feed de noticia das postagens dos PETs dele (em ordem cronológica).
+      que ele possui e pode trocar quando quiser entre os seus PETs.
+
+    - O app serve como ferramenta para salvar e prover dados que auxiliarão
+      nos cuidados de cada um dos seus PETs.
+        * Vacinação, alimentação, saúde, entretenimento
+          Cadastrar, editar, excluir pets.
+---------------------------------------------------------------------------------
+    O USO DE GEOLOCALIZAÇÃO PARA AS FUNÇÕES DESAPARECIDOS E ADOÇÃO
+    
+    Entrada de dados baseada no endereço de cadastro e geolocalização do celular.
+    O que isso nos possibilita?
+    -   Que postagens de cães desaparecidos apareçam para quem está no raio
+        de distância POSSÍVEL do animal ser encontrado.
+    Exemplo: Todos os usuários num raio de 5km são notificados do desaparecimento.
+
+    -   Que postagens de doação de filhotes apareçam para quem escolheu um raio
+        de distância compatível na opção "Quero adotar".
+        
+-
